@@ -1,20 +1,23 @@
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import AllProducts from "../../Elements/AllProducts"
 import SliderProduct from "../../Elements/SliderProducts"
+import { GlobalContext } from "../../Context/GlobalContext.jsx"
+import AddSingleProduct from "../../forms/addProduct/AddSingleProduct.jsx"
 
 const MainPage = () => {
-    const types = ["ficcion", "noficcion", "infantil", "junvenil", "comic", "english", "papeleria"]
+    const { genres } = useContext(GlobalContext)
     let typeToShow = null
 
     useEffect(() => {
-        const randomIndex = Math.floor(Math.random() * types.length)
-        typeToShow = types[randomIndex]
+        const randomIndex = Math.floor(Math.random() * genres.length)
+        typeToShow = genres[randomIndex]
+        console.log(typeToShow)
     }, [])
 
     return(
         <>
-            <SliderProduct typeProduct={typeToShow}/>
-            <AllProducts />
+            <SliderProduct query={"ficcion"}/>
+            <AllProducts productsName={"Todos los productos"}/>
         </>
     )
 }

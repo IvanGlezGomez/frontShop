@@ -26,7 +26,7 @@ const Search = () => {
     }, [query, products])
 
     return (
-        <>
+        <div>
             <input 
                 type="text" 
                 value={query} 
@@ -38,7 +38,7 @@ const Search = () => {
                     <SearchElement key={ele._id} product={ele} />
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import SingleProduct from "./SingleProduct";
+import CardProduct from "./CardProduct";
 import axios from "axios";
 
-const AllProducts = () => {
+const AllProducts = ({ productsName }) => {
     const [products, setProducts] = useState(null)
     const url = import.meta.env.VITE_API_URL
 
@@ -20,9 +20,12 @@ const AllProducts = () => {
     }, [])
 
     return (
-        <ul>
-            {products && products.map(ele => <li key={ele._id}><SingleProduct product={ele} /></li>)}
-        </ul>
+        <section className="allproducts">
+            <h2>{productsName}</h2>
+            <ul>
+                {products && products.map(ele => <li key={ele._id}><CardProduct product={ele} /></li>)}
+            </ul>
+        </section>
     )
 }
 

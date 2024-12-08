@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react"
-import CardProduct from "./CardProduct"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import CardProduct from "../../Elements/CardProduct"
 import axios from "axios"
 
-const SliderProduct = ( {query} ) => {
+const PageByGenre = () => {
     const [products, setProducts] = useState(null)
+    const { query } = useParams()
     const url = import.meta.env.VITE_API_URL
 
     const findProducts = async () => {
@@ -17,10 +19,10 @@ const SliderProduct = ( {query} ) => {
 
     useEffect(() => {
         findProducts()
-    }, [])
+    }, [query])
 
     return(
-        <div className="sliderproducts">
+        <div className="allproducts">
             <h2>{query.toUpperCase()}</h2>
             <ul>
                 {products && products.map((ele,i) => {
@@ -33,4 +35,4 @@ const SliderProduct = ( {query} ) => {
     )
 }
 
-export default SliderProduct
+export default PageByGenre

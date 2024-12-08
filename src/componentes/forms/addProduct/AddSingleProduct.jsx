@@ -1,28 +1,31 @@
 import axios from "axios"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { GlobalContext } from "../../Context/GlobalContext"
 
 const AddSingleProduct = () => {
+    const { genres } = useContext(GlobalContext)
     const [bookType, setBookType] = useState(true)
     const [isbn, setIsbn] = useState("")
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [stock, setStock] = useState("")
-    const [gender, setGender] = useState("")
+    const [gender, setGender] = useState("ficcion")
     const [author, setAuthor] = useState("")
     const [description, setDescription] = useState("")
-    const url = process.env.REACT_APP_API_URL + "create"
+    const [image, setImage] = useState("")
+    const url = import.meta.env.VITE_API_URL + "create"
 
     const handleTypeInput = (e) => {
-        e.target.value !== "book" ? setBookType(false) : setBookType(true)
+        e.target.value === "papeleria" ? setBookType(false) : setBookType(true)
+        setGender(e.target.value)
+        console.log(e.target.value)
     }
 
     const uploadProduct = async (e) => {
         e.preventDefault()
 
-        let type
-        bookType ? type = "book" : type = paper
-
-        const newProduct = {isbn, name, price, stock, gender, author, description}
+        const newProduct = {isbn, name, price, stock, gender, author, description, image}
+        console.log(newProduct)
 
         axios.post(url, newProduct)
         .then(res => console.log('Respuesta del servidor', res.data))
@@ -32,10 +35,9 @@ const AddSingleProduct = () => {
         setName("")
         setPrice("")
         setStock("")
-        setGender("")
-        setGender("")
-        setAuthor("")
+        // setAuthor("")
         setDescription("")
+        setImage("")
     }
 
 
@@ -43,9 +45,10 @@ const AddSingleProduct = () => {
         <>
            <form onSubmit={uploadProduct}>
                 <label>Tipo de producto: </label>
-                <select name="typePoduct" onChange={handleTypeInput}>
-                    <option value="book">Libro</option>
-                    <option value="paper">Papeleria</option>
+                <select name="gender" onChange={handleTypeInput}>
+                    {genres.map((ele, i) => <option key={i} value={ele}>{ele}</option>)}
+                    {/* <option value="book">Libro</option>
+                    <option value="paper">Papeleria</option> */}
                 </select>
                 {bookType 
                     ? (
@@ -58,8 +61,6 @@ const AddSingleProduct = () => {
                             <input type="number" value={price} onChange={e => setPrice(e.target.value)}/>
                             <label>Stock: </label>
                             <input type="number" value={stock} onChange={e => setStock(e.target.value)}/>
-                            <label>Género: </label>
-                            <input type="text" value={gender} onChange={e => setGender(e.target.value)}/>
                             <label>Autor: </label>
                             <input type="text" value={author} onChange={e => setAuthor(e.target.value)}/>
                             <label>Descripción: </label>
@@ -68,7 +69,7 @@ const AddSingleProduct = () => {
                     ) : (
                         <>
                             <label>Codigo de barras: </label>
-                            <input type="text" value={_id} onChange={e => setId(e.target.value)}/>
+                            <input type="text" value={isbn} onChange={e => setId(e.target.value)}/>
                             <label>Producto: </label>
                             <input type="text" value={name} onChange={e => setName(e.target.value)}/>
                             <label>Precio: </label>
@@ -78,7 +79,8 @@ const AddSingleProduct = () => {
                         </>
                     )}
                     <label>Imagen: </label>
-                    <input type="file" id="image" accept="image/png, image/jpeg" />
+                    <input type="text" value={image} onChange={e => setImage(e.target.value)}/>
+                    {/* <input type="file" id="image" accept="image/png, image/jpeg" /> */}
                     <button type="submit">Enviar</button>
             </form> 
         </>
