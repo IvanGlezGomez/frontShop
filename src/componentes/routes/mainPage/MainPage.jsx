@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react"
 import AllProducts from "../../Elements/AllProducts"
 import SliderProduct from "../../Elements/SliderProducts"
 import { GlobalContext } from "../../Context/GlobalContext.jsx"
-import AddSingleProduct from "../../forms/addProduct/AddSingleProduct.jsx"
 
 const MainPage = () => {
     const { genres } = useContext(GlobalContext)
