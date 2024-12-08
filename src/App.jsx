@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import MainPage from './components/routes/mainPage/mainPage.jsx'
+import MainPage from './components/routes/mainPage/MainPage.jsx'
 import Layout from './components/PageElements/Layout.jsx'
 import SoloProduct from './components/routes/soloProduct/SoloProduct.jsx'
 import AddSingleProduct from './components/forms/addProduct/AddSingleProduct.jsx'
