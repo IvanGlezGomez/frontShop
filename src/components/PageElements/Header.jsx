@@ -5,9 +5,10 @@ import UserSVG from "../../svg/UserSVG.jsx"
 import CartSVG from "../../svg/CartSVG.jsx"
 
 const Header = () => {
+
     return(
         <header>
-            <div>
+            <div className="header">
                 <Link to={'/'}><img src="../../../public/darklogo.png" alt="pazos logo"/></Link>
                 <Search />
                 <div className="usercart">

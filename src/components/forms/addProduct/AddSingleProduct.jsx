@@ -14,6 +14,7 @@ const AddSingleProduct = () => {
     const [description, setDescription] = useState("")
     const [image, setImage] = useState("")
     const url = import.meta.env.VITE_API_URL + "create"
+    const [message, setMessage] = useState("")
 
     const handleTypeInput = (e) => {
         e.target.value === "papeleria" ? setBookType(false) : setBookType(true)
@@ -35,9 +36,10 @@ const AddSingleProduct = () => {
         setName("")
         setPrice("")
         setStock("")
-        // setAuthor("")
+        setAuthor("")
         setDescription("")
         setImage("")
+        setMessage("Producto subido con exito")
     }
 
 
@@ -83,6 +85,7 @@ const AddSingleProduct = () => {
                     {/* <input type="file" id="image" accept="image/png, image/jpeg" /> */}
                     <button type="submit">Enviar</button>
             </form> 
+            <div>{message}</div>
         </>
     )
 }
