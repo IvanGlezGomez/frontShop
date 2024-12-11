@@ -24,7 +24,7 @@ const SliderProduct = ( {query} ) => {
             <h2>{query.toUpperCase()}</h2>
             <ul>
                 {products && products.map((ele,i) => {
-                    if(i < 5){
+                    if(i < 4){
                         return <li key={ele._id}><CardProduct product={ele} /></li>
                     }
                 })}
